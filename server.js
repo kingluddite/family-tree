@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose'); // add this
+const bodyParser = require('body-parser');
 require('dotenv').config({ path: 'variables.env' });
 
 // models
@@ -43,6 +44,7 @@ app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 // Connect schemas with GraphQL
 app.use(
   '/graphql',
+  bodyParser.json(),
   graphqlExpress({
     schema,
     context: {
