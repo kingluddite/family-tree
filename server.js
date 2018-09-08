@@ -2,6 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose'); // add this
 require('dotenv').config({ path: 'variables.env' });
 
+// models
+const Genealogy = require('./models/Genealogy');
+const User = require('./models/User');
+
 const PORT = process.env.PORT || 4444;
 
 // connect to db (add these lines)
