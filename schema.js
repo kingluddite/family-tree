@@ -19,4 +19,8 @@ exports.typeDefs = `
   type Query {
     getAllGenealogies: [Genealogy]
   }
+
+  type Mutation {
+    addGenealogy(firstName: String!, lastName: String!, dateOfBirth: String, description: String, username: String  ): Genealogy
+  }
 `;
