@@ -1,5 +1,6 @@
 exports.typeDefs = `
   type Genealogy {
+    _id: ID,
     firstName: String!
     lastName: String!
     dateOfBirth: String
@@ -9,6 +10,7 @@ exports.typeDefs = `
     username: String
   }
   type User {
+    _id: ID,
     username: String!
     password: String!
     email: String!

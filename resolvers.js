@@ -1,6 +1,9 @@
 exports.resolvers = {
   Query: {
-    getAllGenealogies: () => {},
+    getAllGenealogies: async (root, args, { Genealogy }) => {
+      const allGenealogies = await Genealogy.find();
+      return allGenealogies;
+    },
   },
 
   Mutation: {
