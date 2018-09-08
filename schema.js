@@ -15,4 +15,8 @@ exports.typeDefs = `
     joinDate: String
     favorites: [Genealogy]
   }
+
+  type Query {
+    getAllGenealogies: [Genealogy]
+  }
 `;
