@@ -24,5 +24,11 @@ exports.typeDefs = `
 
   type Mutation {
     addGenealogy(firstName: String!, lastName: String!, dateOfBirth: String, description: String, username: String  ): Genealogy
+
+    signupUser(username: String!, email: String!, password: String!): Token
+  }
+
+  type Token {
+    token: String!
   }
 `;
