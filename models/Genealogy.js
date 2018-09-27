@@ -10,9 +10,6 @@ const GenealogySchema = new Schema({
     type: String,
     required: true,
   },
-  dateOfBirth: {
-    type: Date,
-  },
   createdDate: {
     type: Date,
     default: Date.now,

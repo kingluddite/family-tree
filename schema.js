@@ -3,9 +3,7 @@ exports.typeDefs = `
     _id: ID,
     firstName: String!
     lastName: String!
-    dateOfBirth: String
     createdDate: String
-    description: String
     likes: Int
     username: String
   }
