@@ -4,12 +4,22 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import { SIGNUP_USER } from '../../queries';
 
+const initialState = {
+  username: '',
+  email: '',
+  password: '',
+  passwordConfirmation: '',
+};
+
 class Signup extends Component {
   state = {
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirmation: '',
+    ...initialState,
+  };
+
+  clearState = () => {
+    this.setState({
+      ...initialState,
+    });
   };
 
   handleChange = event => {
@@ -27,6 +37,7 @@ class Signup extends Component {
     // within `then()` we get our return `data`
     signupUser().then(({ data: { signupUser } }) => {
       console.log(signupUser);
+      this.clearState();
     });
   };
 
@@ -55,24 +66,28 @@ class Signup extends Component {
                   name="username"
                   placeholder="Username"
                   onChange={this.handleChange}
+                  value={username}
                 />
                 <input
                   type="email"
                   name="email"
                   placeholder="Email Address"
                   onChange={this.handleChange}
+                  value={email}
                 />
                 <input
                   type="password"
                   name="password"
                   placeholder="Password"
                   onChange={this.handleChange}
+                  value={password}
                 />
                 <input
                   type="password"
                   name="passwordConfirmation"
                   placeholder="Confirm Password"
                   onChange={this.handleChange}
+                  value={passwordConfirmation}
                 />
                 <button className="button-primary">Submit</button>
               </form>
