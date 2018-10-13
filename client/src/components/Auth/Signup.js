@@ -41,6 +41,17 @@ class Signup extends Component {
     });
   };
 
+  validateForm = () => {
+    const { username, email, password, passwordConfirmation } = this.state;
+    const isInvalid =
+      !username ||
+      !email ||
+      !password ||
+      !passwordConfirmation ||
+      password !== passwordConfirmation;
+    return isInvalid; // true or false
+  };
+
   render() {
     const { username, email, password, passwordConfirmation } = this.state;
 
@@ -89,7 +100,12 @@ class Signup extends Component {
                   onChange={this.handleChange}
                   value={passwordConfirmation}
                 />
-                <button className="button-primary">Submit</button>
+                <button
+                  disabled={loading || this.validateForm()}
+                  className="button-primary"
+                >
+                  Submit
+                </button>
               </form>
             );
           }}
