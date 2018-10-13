@@ -49,7 +49,9 @@ class Signup extends Component {
       !password ||
       !passwordConfirmation ||
       password !== passwordConfirmation;
-    return isInvalid; //True or False
+
+    return isInvalid; // true or false
+
   };
 
   render() {
