@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import { SIGNUP_USER } from '../../queries';
 
+// custom components
+import Error from '../Error';
+
 const initialState = {
   username: '',
   email: '',
@@ -107,6 +110,7 @@ class Signup extends Component {
                 >
                   Submit
                 </button>
+                {error && <Error error={error} />}
               </form>
             );
           }}
