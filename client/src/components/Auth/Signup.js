@@ -101,6 +101,7 @@ class Signup extends Component {
                   value={passwordConfirmation}
                 />
                 <button
+                  type="submit"
                   disabled={loading || this.validateForm()}
                   className="button-primary"
                 >
