@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "precommit": "pretty-quick --staged",
-    "server": "nodemon server/server.js",
-    "client": "cd client && npm start",
+    "server": "nodemon backend/server.js",
+    "client": "cd frontend && npm start",
     "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
   },
   "keywords": [],
@@ -28,7 +28,7 @@
     "graphql": "^14.0.2",
     "graphql-tools": "^3.0.2",
     "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.2.8"
+    "mongoose": "^5.3.9"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
