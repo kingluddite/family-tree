@@ -30,13 +30,13 @@ mongoose
     process.env.MONGO_URI,
     { useNewUrlParser: true }
   )
-  .then(() => {
-    console.log('DB connected');
-  })
+  .then(() => console.log('DB connected'))
   .catch(err => {
     console.log('Error on start: ' + err.stack);
     process.exit(1);
   });
+
+mongoose.set('useCreateIndex', true);
 
 const app = express();
 
