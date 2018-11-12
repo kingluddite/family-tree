@@ -39,7 +39,8 @@ class Signup extends Component {
     // it is a promise so we can use `then()`
     // within `then()` we get our return `data`
     signupUser().then(({ data: { signupUser } }) => {
-      console.log(signupUser);
+      // console.log(signupUser);
+      localStorage.setItem('token', signupUser.token);
       this.clearState();
     });
   };
@@ -68,7 +69,7 @@ class Signup extends Component {
           {(signupUser, { data, loading, error }) => {
             if (loading) return <div>Loading...</div>;
             if (error) return <div>Error</div>;
-            console.log(data);
+            // console.log(data);
 
             return (
               <form

@@ -40,6 +40,13 @@ mongoose.set('useCreateIndex', true);
 
 const app = express();
 
+// set up JWT authentication middleware
+app.use(async (req, res, next) => {
+  const token = req.headers.authorization;
+  console.log(token);
+  next();
+});
+
 const corsOptions = {
   origin: 'http://localhost:3000',
   credentials: true,
