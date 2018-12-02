@@ -10,12 +10,14 @@ import {
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
-import './index.css';
+// styles
+import './assets/scss/main.scss';
 
 // custom components
 import App from './components/App';
 import Signin from './components/Auth/Signin';
 import Signup from './components/Auth/Signup';
+import StyleGuide from './components/StyleGuide';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4444/graphql',
@@ -39,12 +41,15 @@ const client = new ApolloClient({
 
 const Root = () => (
   <Router>
-    <Switch>
-      <Route path="/" exact component={App} />
-      <Route path="/signin" component={Signin} />
-      <Route path="/signup" component={Signup} />
-      <Redirect to="/" />
-    </Switch>
+    <div id="wrapper">
+      <Switch>
+        <Route path="/" exact component={App} />
+        <Route path="/signin" component={Signin} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/styleguide" component={StyleGuide} />
+        <Redirect to="/" />
+      </Switch>
+    </div>
   </Router>
 );
 

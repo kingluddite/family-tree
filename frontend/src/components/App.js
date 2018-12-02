@@ -1,11 +1,10 @@
 import React from 'react';
-import './App.css';
 
 import { Query } from 'react-apollo';
 import { GET_ALL_GENEALOGIES } from '../queries';
 
 const App = () => (
-  <div className="App">
+  <div>
     <h1>Home</h1>
     <Query query={GET_ALL_GENEALOGIES}>
       {({ data, loading, error }) => {
