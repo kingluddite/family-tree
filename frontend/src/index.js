@@ -14,9 +14,12 @@ import { ApolloProvider } from 'react-apollo';
 import './assets/scss/main.scss';
 
 // custom components
+import withSession from './components/withSession';
 import App from './components/App';
 import Navbar from './components/shared/Navbar';
-import Search from './components/family/Search';
+import Search from './components/genealogy/Search';
+import AddGenealogy from './components/genealogy/AddGenealogy';
+import Profile from './components/profile/Profile';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import StyleGuide from './components/StyleGuide';
@@ -47,7 +50,9 @@ const Root = () => (
       <Navbar />
       <Switch>
         <Route path="/" exact component={App} />
-        <Route path="/search" exact component={Search} />
+        <Route path="/search" component={Search} />
+        <Route path="/genealogy/add" component={AddGenealogy} />
+        <Route path="/profile" component={Profile} />
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
         <Route path="/styleguide" component={StyleGuide} />
@@ -57,9 +62,11 @@ const Root = () => (
   </Router>
 );
 
+const RootWithSession = withSession(Root);
+
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Root />
+    <RootWithSession />
   </ApolloProvider>,
   document.getElementById('root')
 );

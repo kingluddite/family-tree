@@ -18,6 +18,7 @@ exports.typeDefs = `
 
   type Query {
     getAllGenealogies: [Genealogy]
+    getCurrentUser: User
   }
 
   type Mutation {

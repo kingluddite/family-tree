@@ -13,6 +13,16 @@ export const GET_ALL_GENEALOGIES = gql`
   }
 `;
 
+export const GET_CURRENT_USER_QUERY = gql`
+  query GET_CURRENT_USER_QUERY {
+    getCurrentUser {
+      username
+      email
+      joinDate
+    }
+  }
+`;
+
 // Genealogy Mutations
 
 // User Queries

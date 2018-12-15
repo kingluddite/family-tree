@@ -1,28 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose'); // add this
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const path = require('path');
 const cors = require('cors');
 require('dotenv').config({ path: 'variables.env' });
-
-// models
-const Genealogy = require('./models/Genealogy');
-const User = require('./models/User');
 
 const PORT = process.env.PORT || 4444;
 
 // bring in GraphQL middleware
-const { graphiqlExpress, graphqlExpress } = require('apollo-server-express');
-const { makeExecutableSchema } = require('graphql-tools');
+const { ApolloServer } = require('apollo-server-express');
 
 // graphql
 const { typeDefs } = require('./schema');
 const { resolvers } = require('./resolvers');
 
-// Create schemas
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
+// models
+const Genealogy = require('./models/Genealogy');
+const User = require('./models/User');
 
 // connect to db (add these lines)
 mongoose
@@ -43,31 +38,31 @@ const app = express();
 // set up JWT authentication middleware
 app.use(async (req, res, next) => {
   const token = req.headers.authorization;
-  console.log(token);
+  if (token !== 'null') {
+    try {
+      req.currentUser = jwt.verify(token, process.env.SECRET);
+    } catch (err) {
+      console.error(err);
+    }
+  }
   next();
 });
 
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  credentials: true,
-};
-app.use(cors(corsOptions));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
-// Connect schemas with GraphQL
-app.use(
-  '/graphql',
-  bodyParser.json(),
-  graphqlExpress({
-    schema,
-    context: {
-      // pass in mongoose models
-      Genealogy,
-      User,
-    },
-  })
-);
+// Create Apollo Server
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => ({ Genealogy, User, currentUser: req.currentUser }),
+});
+server.applyMiddleware({ app });
 
 app.listen(PORT, () => {
   console.log(`Server listening on PORT ${PORT}`);

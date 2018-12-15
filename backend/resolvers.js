@@ -12,6 +12,19 @@ exports.resolvers = {
       const allGenealogies = await Genealogy.find();
       return allGenealogies;
     },
+
+    getCurrentUser: async (root, args, { currentUser, User }) => {
+      if (!currentUser) {
+        return null;
+      }
+      const user = await User.findOne({
+        username: currentUser.username,
+      }).populate({
+        path: 'favorites',
+        model: 'Genealogy', // make sure this is singular
+      });
+      return user; // if you leave this out you won't get the user
+    },
   },
 
   Mutation: {
