@@ -15,8 +15,9 @@ import './assets/scss/main.scss';
 
 // custom components
 import App from './components/App';
-import Signin from './components/Auth/Signin';
-import Signup from './components/Auth/Signup';
+import Navbar from './components/shared/Navbar';
+import Signin from './components/auth/Signin';
+import Signup from './components/auth/Signup';
 import StyleGuide from './components/StyleGuide';
 
 const client = new ApolloClient({
@@ -42,6 +43,7 @@ const client = new ApolloClient({
 const Root = () => (
   <Router>
     <div id="wrapper">
+      <Navbar />
       <Switch>
         <Route path="/" exact component={App} />
         <Route path="/signin" component={Signin} />

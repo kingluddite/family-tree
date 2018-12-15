@@ -49,6 +49,11 @@ a {
 
   &:active {
     color: desaturate(darken(_palette(highlight), 15), 5) !important;
+    // color: red;
+  }
+
+  &.active {
+    font-weight: bold;
   }
 }
 
