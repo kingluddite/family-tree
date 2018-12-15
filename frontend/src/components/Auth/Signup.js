@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // graphql
 import { Mutation } from 'react-apollo';
@@ -15,6 +17,10 @@ const initialState = {
 };
 
 class Signup extends Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+  };
+
   state = {
     ...initialState,
   };
@@ -34,6 +40,7 @@ class Signup extends Component {
   };
 
   handleSubmit = (event, signupUser) => {
+    const { history } = this.props;
     event.preventDefault();
     // call our signupUser function
     // it is a promise so we can use `then()`
@@ -42,6 +49,7 @@ class Signup extends Component {
       // console.log(signupUser);
       localStorage.setItem('token', signupUser.token);
       this.clearState();
+      history.push('/');
     });
   };
 
@@ -213,4 +221,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);
