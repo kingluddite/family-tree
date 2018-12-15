@@ -19,6 +19,7 @@ const initialState = {
 class Signup extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
+    refetch: PropTypes.func.isRequired,
   };
 
   state = {
@@ -40,14 +41,15 @@ class Signup extends Component {
   };
 
   handleSubmit = (event, signupUser) => {
-    const { history } = this.props;
+    const { history, refetch } = this.props;
     event.preventDefault();
     // call our signupUser function
     // it is a promise so we can use `then()`
     // within `then()` we get our return `data`
-    signupUser().then(({ data: { signupUser } }) => {
+    signupUser().then(async ({ data: { signupUser } }) => {
       // console.log(signupUser);
       localStorage.setItem('token', signupUser.token);
+      await refetch();
       this.clearState();
       history.push('/');
     });

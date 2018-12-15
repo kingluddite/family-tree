@@ -44,7 +44,7 @@ const client = new ApolloClient({
   },
 });
 
-const Root = () => (
+const Root = ({ refetch }) => (
   <Router>
     <div id="wrapper">
       <Navbar />
@@ -53,8 +53,8 @@ const Root = () => (
         <Route path="/search" component={Search} />
         <Route path="/genealogy/add" component={AddGenealogy} />
         <Route path="/profile" component={Profile} />
-        <Route path="/signin" component={Signin} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/signin" render={() => <Signin refetch={refetch} />} />
+        <Route path="/signup" render={() => <Signup refetch={refetch} />} />
         <Route path="/styleguide" component={StyleGuide} />
         <Redirect to="/" />
       </Switch>
