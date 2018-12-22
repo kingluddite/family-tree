@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
+// custom components
+import Signout from '../auth/Signout';
+
 class NavbarAuth extends Component {
   render() {
     const { session } = this.props;
@@ -18,7 +21,7 @@ class NavbarAuth extends Component {
             <NavLink to="/profile">Profile</NavLink>
           </li>
           <li>
-            <button>Signout</button>
+            <Signout />
           </li>
         </ul>
         <h2>
