@@ -5,6 +5,7 @@ import { gql } from 'apollo-boost';
 export const GET_ALL_GENEALOGIES = gql`
   query {
     getAllGenealogies {
+      _id
       firstName
       lastName
       likes
