@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class GenealogyItem extends Component {
   render() {
-    const { firstName, lastName } = this.props;
+    const { _id, firstName, lastName } = this.props;
     return (
       <div>
-        {firstName} {lastName}
+        <Link to={`/genealogy/${_id}`}>
+          {firstName} {lastName}
+        </Link>
       </div>
     );
   }

@@ -19,6 +19,7 @@ import App from './components/App';
 import Navbar from './components/shared/Navbar';
 import Search from './components/genealogy/Search';
 import AddGenealogy from './components/genealogy/AddGenealogy';
+import GenealogyPage from './components/genealogy/GenealogyPage';
 import Profile from './components/profile/Profile';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
@@ -52,6 +53,7 @@ const Root = ({ refetch, session }) => (
         <Route path="/" exact component={App} />
         <Route path="/search" component={Search} />
         <Route path="/genealogy/add" component={AddGenealogy} />
+        <Route path="/genealogy/:_id" component={GenealogyPage} />
         <Route path="/profile" component={Profile} />
         <Route path="/signin" render={() => <Signin refetch={refetch} />} />
         <Route path="/signup" render={() => <Signup refetch={refetch} />} />
