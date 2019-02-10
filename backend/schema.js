@@ -23,6 +23,7 @@ exports.typeDefs = gql`
 
   type Query {
     getAllGenealogies: [Genealogy]
+    getGenealogy(_id: ObjectID!): Genealogy
     getCurrentUser: User
   }
 

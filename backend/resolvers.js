@@ -13,6 +13,11 @@ exports.resolvers = {
       return allGenealogies;
     },
 
+    getGenealogy: async (root, { _id }, { Genealogy }) => {
+      const genealogy = await Genealogy.findOne({ _id });
+      return genealogy;
+    },
+
     getCurrentUser: async (root, args, { currentUser, User }) => {
       if (!currentUser) {
         return null;

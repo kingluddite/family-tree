@@ -2,7 +2,6 @@
 
 ## Install Instructions
 
-
 Create `variables.env`
 
 MONGO_URI=mongodb://GETFROMMLAB
@@ -18,6 +17,12 @@ In backend
 `$ npm i`
 
 ## To run app
-* Be inside root
+
+- Be inside root
 
 `$ npm run dev`
+
+## Troubleshooting
+
+- blow up package-lock.json and node_modules and reinstall with `$ npm i` for both root and frontend
+- username is the person's name (not email)
