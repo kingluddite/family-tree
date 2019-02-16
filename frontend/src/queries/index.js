@@ -14,6 +14,16 @@ export const GET_ALL_GENEALOGIES = gql`
   }
 `;
 
+export const GET_GENEALOGY = gql`
+  query GET_GENEALOGY($_id: ObjectID!) {
+    getGenealogy(_id: $_id) {
+      _id
+      firstName
+      lastName
+    }
+  }
+`;
+
 export const GET_CURRENT_USER_QUERY = gql`
   query GET_CURRENT_USER_QUERY {
     getCurrentUser {
